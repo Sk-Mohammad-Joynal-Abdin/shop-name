@@ -208,32 +208,58 @@
   </section>
 
   <style>
-.gallery img {
-  width: 150px; /* fixed width */
-  height: 150px; /* fixed height */
-  object-fit: contain; /* crop neatly, no stretching 
-  border: 2px solid #333;*/
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.gallery .img-box {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
   border-radius: 8px;
-  margin: 5px;
+  border: 2px solid #333;
+}
+
+/* Blurry background */
+.gallery .img-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px);
+  transform: scale(1.2); /* zoom a bit so blur fills */
+  z-index: 1;
+}
+
+/* Main sharp image */
+.gallery .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
 }
 </style>
 
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <h3 class="section-title">Gallery</h3>
-      <p class="section-sub"></p>
-      <div class="gallery">
-        <img src="./author.jpeg" alt="">
-        <img src="./front side.jpg" alt="">
-        <img src="./inside.jpeg" alt="">
-        <img src="./mechanical keyboard.jpeg" alt="">
-        <img src="./outside.jpeg" alt="">
-        <img src="./services.jpeg" alt="">
-        <img src="./services2.jpeg" alt="">
-      </div>
+<!-- Gallery -->
+<section id="gallery">
+  <div class="container">
+    <h3 class="section-title">Gallery</h3>
+    <div class="gallery">
+      <div class="img-box" style="--bg:url('./author.jpeg')"><img src="./author.jpeg" alt=""></div>
+      <div class="img-box" style="--bg:url('./front side.jpg')"><img src="./front side.jpg" alt=""></div>
+      <div class="img-box" style="--bg:url('./inside.jpeg')"><img src="./inside.jpeg" alt=""></div>
+      <div class="img-box" style="--bg:url('./mechanical keyboard.jpeg')"><img src="./mechanical keyboard.jpeg" alt=""></div>
+      <div class="img-box" style="--bg:url('./outside.jpeg')"><img src="./outside.jpeg" alt=""></div>
+      <div class="img-box" style="--bg:url('./services.jpeg')"><img src="./services.jpeg" alt=""></div>
+      <div class="img-box" style="--bg:url('./services2.jpeg')"><img src="./services2.jpeg" alt=""></div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Contact -->
   <section id="contact" class="contact">
